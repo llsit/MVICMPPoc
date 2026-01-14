@@ -22,10 +22,11 @@ import androidx.compose.ui.unit.dp
 import com.roastkoff.mvicmppoc.news.data.Article
 import com.roastkoff.mvicmppoc.news.effect.NewsEffect
 import com.roastkoff.mvicmppoc.news.viewmodel.NewsViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun NewsScreen(
-    viewModel: NewsViewModel,
+    viewModel: NewsViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }

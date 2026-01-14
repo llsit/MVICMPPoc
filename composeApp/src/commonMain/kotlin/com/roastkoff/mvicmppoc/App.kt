@@ -16,8 +16,8 @@ fun App() {
     MaterialTheme {
 //        val viewModel = HomeViewModel()
 //        HomeScreen(viewModel)
-        val repo: NewsRepository = NewsRepositoryImpl()
-        val newsViewModel = NewsViewModel(repo)
-        NewsScreen(newsViewModel)
+//        val repo: NewsRepository = NewsRepositoryImpl()
+//        val newsViewModel = NewsViewModel(repo)
+        NewsScreen()
     }
 }
