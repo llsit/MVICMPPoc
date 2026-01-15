@@ -1,16 +1,11 @@
 package com.roastkoff.mvicmppoc
 
 import android.app.Application
-import com.roastkoff.mvicmppoc.news.di.appModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import com.roastkoff.mvicmppoc.news.di.initKoin
 
 class NewsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        startKoin {
-            androidContext(this@NewsApplication)
-            modules(appModule)
-        }
+        initKoin()
     }
 }
