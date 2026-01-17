@@ -5,5 +5,5 @@ import org.koin.core.context.startKoin
 
 fun initKoin(): KoinApplication =
     startKoin {
-        modules(appModule)
+        modules(appModule, networkModule)
     }

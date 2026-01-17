@@ -19,7 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.roastkoff.mvicmppoc.news.data.Article
+import com.roastkoff.mvicmppoc.news.data.News
 import com.roastkoff.mvicmppoc.news.effect.NewsEffect
 import com.roastkoff.mvicmppoc.news.viewmodel.NewsViewModel
 import org.koin.compose.viewmodel.koinViewModel
@@ -58,7 +58,7 @@ fun NewsScreen(
 
                 else -> {
                     LazyColumn {
-                        itemsIndexed(state.articles) { index, article ->
+                        itemsIndexed(state.news) { index, article ->
                             NewsItem(article, index + 1)
                         }
                     }
@@ -69,7 +69,7 @@ fun NewsScreen(
 }
 
 @Composable
-fun NewsItem(article: Article, index: Int) {
+fun NewsItem(article: News, index: Int) {
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = "$index ${article.title}",

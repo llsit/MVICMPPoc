@@ -1,6 +1,7 @@
 package com.roastkoff.mvicmppoc.news.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.roastkoff.mvicmppoc.common.AppLogger
 import com.roastkoff.mvicmppoc.news.data.NewsRepository
 import com.roastkoff.mvicmppoc.news.effect.NewsEffect
 import com.roastkoff.mvicmppoc.news.intent.NewsIntent
@@ -39,17 +40,19 @@ class NewsViewModel(
     private fun loadNews() {
         CoroutineScope(Dispatchers.Default).launch {
             _state.update { it.copy(isLoading = true) }
-
+            AppLogger.d("loadNews", "loadNews: -> isLoading")
             runCatching {
-                repository.fetchTopNews()
-            }.onSuccess { articles ->
+                repository.fetchTopHeadlines()
+            }.onSuccess { news ->
+                AppLogger.d("loadNews", "loadNews: Success -> $news")
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        articles = articles
+                        news = news
                     )
                 }
             }.onFailure {
+                AppLogger.d("loadNews", "loadNews: Error -> ${it.message}")
                 _state.update { it.copy(isLoading = false) }
                 _effect.send(
                     NewsEffect.ShowMessage("Failed to load news")
