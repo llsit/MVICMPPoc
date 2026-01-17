@@ -1,5 +1,76 @@
 This is a Kotlin Multiplatform project targeting Android, iOS, Web.
 
+# MVICMPPoc
+
+A **Compose Multiplatform (CMP)** proof-of-concept project demonstrating **MVI architecture**, **Ktor networking**, and **Koin dependency injection**, consuming the **GNews API** to display top headlines across multiple platforms.
+
+---
+
+## ✨ Features
+
+- 🌍 Compose Multiplatform UI
+- 📰 Fetch top headlines from GNews API
+- 🔄 Unidirectional data flow with MVI
+- ⚙️ Shared business logic in `commonMain`
+- 🧩 Clean separation of concerns
+- ♻️ Reusable UI & domain layers across platforms
+
+---
+
+## 🧱 Architecture
+
+This project follows **MVI (Model–View–Intent)** architecture.
+
+---
+
+## 🔁 MVI Flow
+
+1. **User Action** → Intent
+2. **Intent** processed by ViewModel
+3. **Reducer** updates State
+4. **State** drives UI
+5. **Effect** handles one-time events (Snackbar, Toast)
+
+---
+
+## 🛠 Tech Stack
+
+### Core
+- **Kotlin Multiplatform**
+- **Compose Multiplatform**
+- **Coroutines & Flow**
+
+### Architecture
+- **MVI (Model–View–Intent)**
+- **Unidirectional Data Flow**
+
+### Dependency Injection
+- **Koin**
+
+### Networking
+- **Ktor Client**
+- **Content Negotiation**
+- **Kotlinx Serialization**
+
+### UI
+- **Material 3**
+- **LazyColumn**
+- **Scaffold / Snackbar**
+
+---
+
+## 🌐 Supported Platforms
+
+- ✅ Android
+- ✅ IOS
+- ✅ Web (JS)
+
+---
+
+## 🌍 API
+
+This project uses **GNews API**:
+
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
   - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
