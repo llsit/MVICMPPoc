@@ -42,7 +42,7 @@ class NewsViewModel(
             _state.update { it.copy(isLoading = true) }
             AppLogger.d("loadNews", "loadNews: -> isLoading")
             runCatching {
-                repository.fetchTopHeadlines()
+                repository.fetchTopNews()
             }.onSuccess { news ->
                 AppLogger.d("loadNews", "loadNews: Success -> $news")
                 _state.update {
@@ -51,9 +51,9 @@ class NewsViewModel(
                         news = news
                     )
                 }
-            }.onFailure {
-                AppLogger.d("loadNews", "loadNews: Error -> ${it.message}")
-                _state.update { it.copy(isLoading = false) }
+            }.onFailure { error ->
+                AppLogger.d("loadNews", "loadNews: Error -> ${error.message}")
+                _state.update { it.copy(isLoading = false, error = error.message) }
                 _effect.send(
                     NewsEffect.ShowMessage("Failed to load news")
                 )

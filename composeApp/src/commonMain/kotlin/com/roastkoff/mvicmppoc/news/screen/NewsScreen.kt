@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.roastkoff.mvicmppoc.news.data.News
 import com.roastkoff.mvicmppoc.news.effect.NewsEffect
 import com.roastkoff.mvicmppoc.news.viewmodel.NewsViewModel
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -53,7 +54,10 @@ fun NewsScreen(
                 }
 
                 state.error != null -> {
-                    Text(state.error!!)
+                    ErrorContent(
+                        message = state.error!!,
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
 
                 else -> {
@@ -78,6 +82,31 @@ fun NewsItem(article: News, index: Int) {
         Text(
             text = article.description,
             style = MaterialTheme.typography.bodyMedium
+        )
+    }
+}
+
+@Composable
+fun ErrorContent(
+    message: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Something went wrong",
+            style = MaterialTheme.typography.titleMedium
+        )
+
+        Text(
+            text = message,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(top = 8.dp)
         )
     }
 }
